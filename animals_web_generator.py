@@ -12,7 +12,10 @@ def main():
     animals_data = load_data('animals_data.json')
 
     output = ''
+
     for animal in animals_data:
+        output += '<li class="cards__item">\n'
+
         name = animal.get('name')
         characteristics = animal.get('characteristics', {})
         diet = characteristics.get('diet')
@@ -20,15 +23,15 @@ def main():
         animal_type = characteristics.get('type')
 
         if name:
-            output += f"Name: {name}<br/>\n"
+            output += f"    Name: {name}<br/>\n"
         if diet:
-            output += f"Diet: {diet}<br/>\n"
+            output += f"    Diet: {diet}<br/>\n"
         if locations:
-            output += f"Location: {locations[0]}<br/>\n"
+            output += f"    Location: {locations[0]}<br/>\n"
         if animal_type:
-            output += f"Type: {animal_type}<br/>\n"
+            output += f"    Type: {animal_type}<br/>\n"
 
-        output += "<br/>\n"
+        output += '</li>\n'
 
     with open("animals_template.html", "r") as f:
         template_content = f.read()
@@ -38,7 +41,7 @@ def main():
     with open("animals.html", "w") as f:
         f.write(new_html_content)
 
-    print("Successfully generated animals.html!")
+    print("Step 3: HTML cards generated successfully!")
 
 
 if __name__ == "__main__":
